@@ -5,7 +5,9 @@
 
 
 var stringifyJSON = function(obj) {
-
+	if(typeof obj === "function" || typeof obj === "undefined"){
+		return null;
+	}
 	if(obj === null || typeof obj === "number" || typeof obj === "boolean" ){
 		return obj+"";
 	}
@@ -13,16 +15,13 @@ var stringifyJSON = function(obj) {
 		return '"'+obj+'"';
 	}
 
-
 	if(obj instanceof Array){
-		var arr = "[";
-		index = -1;
-
-		if(index === obj.length){
-			arr+= "]";
-			return arr;
-		}
-		return arr+=stringifyJSON(obj[index+1]);
+		return "[" + _.map(obj, function(item){
+			return stringifyJSON(item);
+		}).join(",") + "]"
+	}
+	if(Object.keys(obj).length != undefined){
+		
 	}
 
 
