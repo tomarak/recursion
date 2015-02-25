@@ -3,6 +3,19 @@
 
 // but you don't so you're going to write it from scratch:
 
+
 var stringifyJSON = function(obj) {
-  // your code goes here
+
+	if(obj === null || typeof obj === Number || typeof obj=== Boolean || typeof obj=== String){
+		return obj.toString();
+	}
+
+	_.each(obj, function(item){
+		stringifyJSON(item);
+	})
+
+
+	
+
+
 };
